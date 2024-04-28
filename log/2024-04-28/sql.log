@@ -1,0 +1,2 @@
+2024/04/28 15:56:57 [32mD:/go/src/gin-demo/modules/hello/router.go:23
+[0m[33m[0.851ms] [34;1m[rows:1][0m SELECT * FROM `user` ORDER BY `user`.`id` LIMIT 1
