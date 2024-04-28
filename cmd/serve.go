@@ -4,8 +4,10 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"gin-demo/debug"
 	"gin-demo/middleware"
 	"gin-demo/router"
+	"log"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cobra"
@@ -22,8 +24,6 @@ var serveCmd = &cobra.Command{
 	},
 }
 
-var debug bool
-
 func init() {
 	rootCmd.AddCommand(serveCmd)
 	viper.SetDefault("addr", ":8080")
@@ -33,5 +33,9 @@ func run() {
 	r := gin.Default()
 	middleware.InitMiddleware(r, viper.GetViper())
 	router.InitRouter(r, viper.GetViper())
+	log.Println("debug", isDebug, viper.GetBool("debug"))
+	if isDebug {
+		debug.InitDebug()
+	}
 	r.Run(viper.GetString("addr")) // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }

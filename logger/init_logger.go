@@ -166,6 +166,14 @@ func Debugln(v ...any) {
 	logger.Sugar().Debugln(v...)
 }
 
+func Error(v ...any) {
+	logger.Sugar().Error(v...)
+}
+
+func Errorln(v ...any) {
+	logger.Sugar().Errorln(v...)
+}
+
 // 日志文件切割
 func Rotatelog(filename string) (zapcore.WriteSyncer, error) {
 	//保存日志30天，每1分钟分割一次日志

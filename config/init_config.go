@@ -13,8 +13,9 @@ var (
 )
 
 type Config struct {
-	DBS []DBConfig `mapstructure:"dbs" json:"dbs" yaml:"dbs"`
-	Log LogConfig  `mapstructure:"log" json:"log" yaml:"log"`
+	Server ServerConfig `mapstructure:"server" json:"server" yaml:"server"`
+	DBS    []DBConfig   `mapstructure:"dbs" json:"dbs" yaml:"dbs"`
+	Log    LogConfig    `mapstructure:"log" json:"log" yaml:"log"`
 }
 
 func InitConfig(v *viper.Viper) *Config {
@@ -26,6 +27,10 @@ func InitConfig(v *viper.Viper) *Config {
 		dbs[cfg.Name] = &cfg
 	}
 	return config
+}
+
+func Server() ServerConfig {
+	return config.Server
 }
 
 func DBS() []DBConfig {

@@ -33,6 +33,8 @@ func Execute() {
 	}
 }
 
+var isDebug bool
+
 func init() {
 	cobra.OnInitialize(initConfig)
 
@@ -40,7 +42,8 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	debug = *rootCmd.PersistentFlags().BoolP("debug", "d", false, "Enable debug mode")
+	//isDebug = *rootCmd.PersistentFlags().BoolP("debug", "d", false, "Enable debug mode")
+	rootCmd.PersistentFlags().BoolVarP(&isDebug, "debug", "d", false, "Enable debug mode")
 	viper.BindPFlag("debug", rootCmd.PersistentFlags().Lookup("debug"))
 
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", ".config.json", "config file (default is $HOME/.config.json)")
